@@ -1,0 +1,13 @@
+{
+ "doctype": "Report",
+ "name": "Center Utilization & Revenue",
+ "module": "Academy Core",
+ "ref_doctype": "Coaching Center",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Academy Manager"}
+ ],
+ "disabled": 0
+}

@@ -1,0 +1,115 @@
+{
+ "doctype": "DocType",
+ "name": "Equipment",
+ "module": "Academy Core",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "field:equipment_name",
+ "title_field": "equipment_name",
+ "show_title_field_in_link": 1,
+ "fields": [
+  {
+   "fieldname": "equipment_name",
+   "fieldtype": "Data",
+   "label": "Equipment Name",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "equipment_type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Uniform\nKit\nRacket or Bat\nMat\nGuard or Pad\nBall or Shuttle\nInstrument\nOther",
+   "default": "Uniform",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "ERPNext Item",
+   "options": "Item",
+   "description": "Optional link for stock and billing."
+  },
+  {
+   "fieldname": "section_stock",
+   "fieldtype": "Section Break",
+   "label": "Stock"
+  },
+  {
+   "fieldname": "total_qty",
+   "fieldtype": "Int",
+   "label": "Total Quantity",
+   "default": "0"
+  },
+  {
+   "fieldname": "issued_qty",
+   "fieldtype": "Int",
+   "label": "Issued",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "available_qty",
+   "fieldtype": "Int",
+   "label": "Available",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "deposit_amount",
+   "fieldtype": "Currency",
+   "label": "Deposit Amount",
+   "options": "currency",
+   "description": "Refundable deposit collected per issue."
+  },
+  {
+   "fieldname": "coaching_center",
+   "fieldtype": "Link",
+   "label": "Coaching Center",
+   "options": "Coaching Center",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy User",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ]
+}

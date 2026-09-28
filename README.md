@@ -44,6 +44,30 @@ portal for students and guardians.
 - One-click ERPNext **Sales Invoice** realization with automatic Student→Customer mapping
 - Daily overdue flagging + manager escalation notifications
 
+### 💬 Communications
+- **WhatsApp/SMS alerts** (configurable gateway) for fee due, absence and session reminders
+- **Parent Communication Log** — calls/emails/meetings per student with follow-up reminders
+
+### 🏋️ Equipment
+- Equipment register with deposit tracking, issue to student and return workflow
+
+### 🏢 Multi-Center Operations
+- Every batch/session/invoice links to a **Coaching Center**
+- Per-center number cards (Active Students, Sessions Today, Outstanding Fees) and a
+  **Center Utilization & Revenue** report for side-by-side comparison
+
+### 🆕 Advanced Automation (v15 market standard)
+- **Auto-billing engine** — recurring invoices from enrollments before each billing date,
+  billing dates advance automatically, frozen enrollments skipped
+- **Late fees** auto-applied to overdue invoices
+- **Enrollment freeze/hold** with duration-aware billing shift on unfreeze
+- **Makeup Credits** auto-issued on absence, redeemable for a session, auto-expiry
+- **Certificates** auto-issued when evaluations pass the configured threshold
+- **Lead Inquiry funnel** — trial class tracking → convert to student/enrollment,
+  follow-up reminders, Lead Funnel conversion report
+- **Trainer Payouts** computed from completed sessions per payment model
+- **Session Feedback** with ratings and NPS-style summary report
+
 ### 📱 Mobile / Portal
 - Responsive portal page **`/coaching_portal`** — dashboard, upcoming sessions,
   invoices, **pay online**, personal QR pass (mobile-screen friendly)
@@ -63,6 +87,9 @@ portal for students and guardians.
 | Student Progress Report | Skill evaluation scores and recommendations |
 | Today's Sessions | Today's timetable with trainer, venue, attendance summary |
 | Fee Collection Summary | Collections grouped by payment mode, gateway split |
+| Lead Funnel | Leads by status/trial status with conversion % |
+| Session Feedback Summary | Ratings and NPS-style score per trainer/batch |
+| Center Utilization & Revenue | Seats, enrollment %, collections per center |
 
 ---
 
@@ -70,12 +97,16 @@ portal for students and guardians.
 
 ```
 Academy Core        Coaching Settings (singleton) · Sports Discipline · Coaching Center
+                    Lead Inquiry
 Student Management  Student · Program · Batch · Enrollment · Student Attendance
-                    Skill Evaluation (+ Skill Evaluation Line)
+                    Skill Evaluation (+ Line) · Makeup Credit · Certificate
+                    Session Feedback
 Scheduling          Class Session · Batch Schedule Line
-Staff Management    Coach (Trainer) · Staff Shift
+Staff Management    Coach (Trainer) · Staff Shift · Trainer Payout
 Fees Management     Fee Plan (+ Component) · Fee Component · Fee Invoice (+ Item)
                     Fee Payment · Fee Receipt · Payment Gateway Log
+Equipment           Equipment · Equipment Issue
+Communications      Parent Communication
 ```
 
 ## 🚀 Install
@@ -90,13 +121,12 @@ bench --site your-site.local migrate
 bench restart
 ```
 
-Optional Python deps for full functionality (install into the bench env):
+Python deps ship with the app (`qrcode[pil]` for QR generation). Gateway SDKs
+are optional extras:
 
 ```bash
-# QR code generation (required for QR passes / posters)
-bench pip install "qrcode[pil]"
-# Gateway SDKs (only if using those gateways)
-bench pip install razorpay stripe
+# only if using Razorpay / Stripe
+bench pip install "josh_coaching[gateways]"
 ```
 
 ## ⚙️ After install

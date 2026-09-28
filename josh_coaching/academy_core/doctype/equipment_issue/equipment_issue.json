@@ -1,0 +1,127 @@
+{
+ "doctype": "DocType",
+ "name": "Equipment Issue",
+ "module": "Academy Core",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "format:EQUI-{YYYY}{MM}-{#####}",
+ "fields": [
+  {
+   "fieldname": "equipment",
+   "fieldtype": "Link",
+   "label": "Equipment",
+   "options": "Equipment",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "equipment_name",
+   "fieldtype": "Data",
+   "label": "Name",
+   "fetch_from": "equipment.equipment_name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Issued To (Student)",
+   "options": "Student",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "trainer",
+   "fieldtype": "Link",
+   "label": "Issued To (Trainer)",
+   "options": "Coach"
+  },
+  {
+   "fieldname": "section_details",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "label": "Issue Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "expected_return_date",
+   "fieldtype": "Date",
+   "label": "Expected Return"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "deposit_amount",
+   "fieldtype": "Currency",
+   "label": "Deposit Collected",
+   "options": "currency",
+   "fetch_from": "equipment.deposit_amount"
+  },
+  {
+   "fieldname": "deposit_refunded",
+   "fieldtype": "Check",
+   "label": "Deposit Refunded",
+   "depends_on": "eval:doc.status==='Returned'"
+  },
+  {
+   "fieldname": "return_date",
+   "fieldtype": "Date",
+   "label": "Actual Return",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "condition_notes",
+   "fieldtype": "Small Text",
+   "label": "Condition Notes"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Issued\nReturned\nDamaged\nLost",
+   "default": "Issued",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy User",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ]
+}

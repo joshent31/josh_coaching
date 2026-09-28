@@ -7,7 +7,15 @@ description = "Coaching & Training Center suite (sports, dance, gymnastics, acad
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
-dependencies = []
+dependencies = [
+    "qrcode[pil]>=7.4",
+]
+
+[project.optional-dependencies]
+gateways = [
+    "razorpay>=1.4",
+    "stripe>=9.0",
+]
 
 [build-system]
 requires = ["flit_core >=3.4,<4"]

@@ -15,7 +15,7 @@
   "module": "Student Management",
   "print_format_type": "Jinja",
   "standard": "Yes",
-  "html": "<div class=\"print-format\" style=\"max-width:420px;\">\n  <div style=\"border:2px solid #333;border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center;\">\n    <div style=\"flex:1;\">\n      <h3 style=\"margin:0 0 8px 0;\">{{ doc.student_name }}</h3>\n      <p style=\"margin:2px 0;\"><b>ID:</b> {{ doc.student_id or doc.name }}</p>\n      <p style=\"margin:2px 0;\"><b>DOB:</b> {{ doc.date_of_birth or '' }}</p>\n      <p style=\"margin:2px 0;\"><b>Status:</b> {{ doc.status }}</p>\n      <p style=\"margin:2px 0;font-size:11px;color:#555;\">Scan at the front desk for check-in</p>\n    </div>\n    <div>\n      <img src=\"data:image/png;base64,{{ qr_data or '' }}\" style=\"width:120px;height:120px;\" />\n    </div>\n  </div>\n</div>"
+  "html": "<div class=\"print-format\" style=\"max-width:420px;\">\n  <div style=\"border:2px solid #333;border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center;\">\n    <div style=\"flex:1;\">\n      <h3 style=\"margin:0 0 8px 0;\">{{ doc.student_name }}</h3>\n      <p style=\"margin:2px 0;\"><b>ID:</b> {{ doc.student_id or doc.name }}</p>\n      <p style=\"margin:2px 0;\"><b>DOB:</b> {{ doc.date_of_birth or '' }}</p>\n      <p style=\"margin:2px 0;\"><b>Status:</b> {{ doc.status }}</p>\n      <p style=\"margin:2px 0;font-size:11px;color:#555;\">Scan at the front desk for check-in</p>\n    </div>\n    <div>\n      <img src=\"{{ qr_image(doc) or '' }}\" style=\"width:120px;height:120px;\" />\n    </div>\n  </div>\n</div>"
  },
  {
   "doctype": "Print Format",
@@ -24,6 +24,6 @@
   "module": "Scheduling",
   "print_format_type": "Jinja",
   "standard": "Yes",
-  "html": "<div class=\"print-format\" style=\"text-align:center;\">\n  <h2>Session Check-in</h2>\n  <p style=\"font-size:16px;\"><b>{{ doc.batch }}</b> &mdash; {{ doc.session_date }} {{ doc.start_time }} - {{ doc.end_time }}</p>\n  <p style=\"color:#666;\">{{ doc.venue or '' }}</p>\n  <img src=\"data:image/png;base64,{{ qr_data or '' }}\" style=\"width:280px;height:280px;\" />\n  <p style=\"margin-top:12px;color:#888;\">Scan this code when you arrive. Valid for {{ doc.checkin_window_minutes }} minutes after generation.</p>\n</div>"
+  "html": "<div class=\"print-format\" style=\"text-align:center;\">\n  <h2>Session Check-in</h2>\n  <p style=\"font-size:16px;\"><b>{{ doc.batch }}</b> &mdash; {{ doc.session_date }} {{ doc.start_time }} - {{ doc.end_time }}</p>\n  <p style=\"color:#666;\">{{ doc.venue or '' }}</p>\n  <img src=\"{{ qr_image(doc) or '' }}\" style=\"width:280px;height:280px;\" />\n  <p style=\"margin-top:12px;color:#888;\">Scan this code when you arrive. Valid for {{ doc.checkin_window_minutes }} minutes after generation.</p>\n</div>"
  }
 ]

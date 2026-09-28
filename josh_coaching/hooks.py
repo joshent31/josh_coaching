@@ -13,6 +13,12 @@ required_apps = ["frappe/erpnext"]
 # --------------
 app_include_js = ["josh_coaching.bundle.js"]
 
+# Print format Jinja globals (qr_image used by ID card / session poster)
+# ----------------------------------------------------------------------
+print_format_jinja_globals = {
+	"qr_image": "josh_coaching.qr_print_hook.get_qr_image",
+}
+
 # Fixtures
 # --------
 fixtures = [

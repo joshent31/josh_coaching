@@ -143,6 +143,70 @@
    "label": "Lead Follow-up Days",
    "default": "3",
    "description": "Remind managers about leads with a follow-up date due."
+  },
+  {
+   "fieldname": "section_notify",
+   "fieldtype": "Section Break",
+   "label": "WhatsApp / SMS Alerts"
+  },
+  {
+   "fieldname": "academy_name",
+   "fieldtype": "Data",
+   "label": "Academy Name (in messages)"
+  },
+  {
+   "fieldname": "notify_absence_enabled",
+   "fieldtype": "Check",
+   "label": "Absence Alerts",
+   "default": "1"
+  },
+  {
+   "fieldname": "notify_fee_enabled",
+   "fieldtype": "Check",
+   "label": "Fee Due / Overdue Alerts",
+   "default": "1"
+  },
+  {
+   "fieldname": "notify_session_enabled",
+   "fieldtype": "Check",
+   "label": "Session Reminder Alerts",
+   "default": "1"
+  },
+  {
+   "fieldname": "column_break_notify",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "whatsapp_gateway_url",
+   "fieldtype": "Data",
+   "label": "WhatsApp Gateway URL"
+  },
+  {
+   "fieldname": "sms_gateway_url",
+   "fieldtype": "Data",
+   "label": "SMS Gateway URL"
+  },
+  {
+   "fieldname": "sms_gateway_params",
+   "fieldtype": "Small Text",
+   "label": "Gateway POST Body (Jinja)",
+   "description": "e.g. {\"to\":\"{{ to }}\",\"text\":\"{{ message }}\"} — sent as the request body."
+  },
+  {
+   "fieldname": "sms_template_absence",
+   "fieldtype": "Small Text",
+   "label": "Template: Absence"
+  },
+  {
+   "fieldname": "sms_template_fee_due",
+   "fieldtype": "Small Text",
+   "label": "Template: Fee Due"
+  },
+  {
+   "fieldname": "sms_template_session_reminder",
+   "fieldtype": "Small Text",
+   "label": "Template: Session Reminder"
   }
  ],
  "permissions": [

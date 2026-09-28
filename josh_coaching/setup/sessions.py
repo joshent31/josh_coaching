@@ -21,6 +21,11 @@ def send_session_reminders() -> int:
 	)
 	for s in sessions:
 		recipients = {s.trainer} if s.trainer else set()
+		students = frappe.get_all(
+			"Enrollment",
+			filters={"batch": s.batch, "status": "Active", "docstatus": 0},
+			pluck="student",
+		)
 		recipients.update(
 			frappe.get_all(
 				"Enrollment",
@@ -29,6 +34,12 @@ def send_session_reminders() -> int:
 			)
 		)
 		recipients.discard(None)
+		try:
+			from josh_coaching.notifications import notify_session_reminder
+
+			notify_session_reminder(s, students)
+		except Exception:  # noqa: BLE001 — reminders must not break the job
+			frappe.log_error(message=frappe.get_traceback(), title="Session reminder notify failed")
 		for user in recipients:
 			frappe.get_doc(
 				{

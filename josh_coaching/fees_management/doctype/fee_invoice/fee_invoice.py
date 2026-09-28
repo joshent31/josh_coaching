@@ -23,6 +23,12 @@ class FeeInvoice(Document):
 	def on_submit(self):
 		self.db_set("status", "Unpaid")
 		apply_customer_advance(self)
+		try:
+			from josh_coaching.notifications import notify_fee_due
+
+			notify_fee_due(self)
+		except Exception:  # noqa: BLE001 — notification must not block invoicing
+			frappe.log_error(message=frappe.get_traceback(), title="Fee due notification failed")
 
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")
