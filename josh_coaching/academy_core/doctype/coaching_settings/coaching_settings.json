@@ -145,6 +145,13 @@
    "description": "Remind managers about leads with a follow-up date due."
   },
   {
+   "fieldname": "sibling_discount_percent",
+   "fieldtype": "Percent",
+   "label": "Sibling Discount %",
+   "default": "10",
+   "description": "Auto-applied to the second and subsequent siblings' enrollments."
+  },
+  {
    "fieldname": "section_notify",
    "fieldtype": "Section Break",
    "label": "WhatsApp / SMS Alerts"

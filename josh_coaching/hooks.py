@@ -26,8 +26,8 @@ fixtures = [
 	{"dt": "Notification", "filters": [["module", "in", ["Academy Core", "Student Management", "Scheduling", "Staff Management", "Fees Management"]]]},
 	{"dt": "Workflow", "filters": [["document_type", "in", ["Fee Invoice"]]]},
 	{"dt": "Print Format", "filters": [["module", "in", ["Academy Core", "Student Management", "Scheduling", "Staff Management", "Fees Management"]]]},
-	{"dt": "Number Card", "filters": [["name", "in", ["Active Students", "Sessions Today", "Outstanding Fees", "Fees Collected This Month"]]]},
-	{"dt": "Dashboard Chart", "filters": [["name", "in", ["Monthly Fee Collections", "Session Bookings by Status", "Students by Program"]]]},
+	{"dt": "Number Card", "filters": [["name", "in", ["Active Students", "Sessions Today", "Outstanding Fees", "Fees Collected This Month", "Open Leads", "Open Makeup Credits", "Equipment Outstanding", "Avg Session Rating", "Frozen Enrollments"]]]},
+	{"dt": "Dashboard Chart", "filters": [["name", "in", ["Monthly Fee Collections", "Session Bookings by Status", "Students by Program", "Leads by Status"]]]},
 ]
 
 # Installation

@@ -241,6 +241,38 @@ def get_session_feedback_summary(trainer: str | None = None) -> dict:
 
 
 # ---------------------------------------------------------------------
+# Progress timeline (B14)
+# ---------------------------------------------------------------------
+@frappe.whitelist()
+def get_progress_timeline(student: str) -> dict:
+	"""Milestone feed: evaluations, certificates, events results — newest first."""
+	_require_student_access(student)
+
+	evaluations = frappe.get_all(
+		"Skill Evaluation",
+		filters={"student": student, "docstatus": 1},
+		fields=["name", "evaluation_date", "percentage", "recommendation", "remarks", "program"],
+		order_by="evaluation_date desc",
+		limit=20,
+	)
+	certificates = frappe.get_all(
+		"Certificate",
+		filters={"student": student},
+		fields=["name", "issue_date", "certificate_type", "level_title", "program"],
+		order_by="issue_date desc",
+		limit=20,
+	)
+	event_results = frappe.get_all(
+		"Event Participant",
+		filters={"student": student, "result": ["is", "set"]},
+		fields=["name", "event", "result", "score_notes"],
+		order_by="creation desc",
+		limit=20,
+	)
+	return {"evaluations": evaluations, "certificates": certificates, "events": event_results}
+
+
+# ---------------------------------------------------------------------
 # ERPNext integration
 # ---------------------------------------------------------------------
 @frappe.whitelist()

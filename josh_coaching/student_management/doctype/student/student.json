@@ -123,6 +123,14 @@
    "options": "Father\nMother\nGuardian\nSibling\nSelf"
   },
   {
+   "fieldname": "sibling",
+   "fieldtype": "Link",
+   "label": "Sibling",
+   "options": "Student",
+   "in_standard_filter": 1,
+   "description": "Link a sibling to auto-apply the family discount on fees."
+  },
+  {
    "fieldname": "section_portal",
    "fieldtype": "Section Break",
    "label": "Portal & QR"

@@ -105,3 +105,11 @@ class Enrollment(Document):
 
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")
+		try:
+			from josh_coaching.student_management.waitlist_entry import (
+				auto_promote_on_seat,
+			)
+
+			auto_promote_on_seat()
+		except Exception:  # noqa: BLE001
+			frappe.log_error(message=frappe.get_traceback(), title="Waitlist promotion failed")

@@ -24,6 +24,18 @@
  },
  {
   "doctype": "Dashboard Chart",
+  "name": "Leads by Status",
+  "chart_name": "Leads by Status",
+  "chart_type": "Group By",
+  "document_type": "Lead Inquiry",
+  "group_by_type": "Count",
+  "group_by_based_on": "status",
+  "time_interval": "Daily",
+  "filters_json": "[]",
+  "is_public": 1
+ },
+ {
+  "doctype": "Dashboard Chart",
   "name": "Students by Program",
   "chart_name": "Students by Program",
   "chart_type": "Group By",

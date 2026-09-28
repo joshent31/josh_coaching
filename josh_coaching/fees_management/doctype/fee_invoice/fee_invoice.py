@@ -15,6 +15,8 @@ class FeeInvoice(Document):
 
 	def calculate_totals(self):
 		self.total_amount = sum(flt(d.amount) for d in self.items or [])
+		self.tax_amount = flt(self.total_amount * flt(self.tax_rate or 0) / 100, 2)
+		self.grand_total = flt(self.total_amount + (self.tax_amount or 0), 2)
 
 	def before_submit(self):
 		if not self.items:

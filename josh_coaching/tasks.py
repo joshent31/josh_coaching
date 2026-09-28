@@ -15,8 +15,12 @@ def daily():
 		notify_due_followups as comm_followups,
 	)
 	from josh_coaching.fees_management.fee_invoice import daily_overdue_escalation
+	from josh_coaching.fees_management.session_pack import expire_stale_packs
 	from josh_coaching.setup import batches, billing, sessions
 	from josh_coaching.student_management.makeup_credit import expire_stale_credits
+	from josh_coaching.student_management.student_document import (
+		notify_expiring_documents,
+	)
 
 	daily_overdue_escalation()
 	billing.generate_recurring_invoices()
@@ -28,6 +32,8 @@ def daily():
 	comm_followups()
 	notify_overdue_returns()
 	expire_stale_credits()
+	expire_stale_packs()
+	notify_expiring_documents()
 
 
 def hourly():

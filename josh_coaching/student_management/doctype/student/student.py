@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 STATUS_WORKFLOW_MAP = {
@@ -26,6 +27,17 @@ class Student(Document):
 		self.student_name = f"{self.first_name or ''} {self.last_name or ''}".strip()
 		if not self.qr_token:
 			self.qr_token = frappe.generate_hash(length=20)
+		self._validate_sibling()
+
+	def _validate_sibling(self):
+		"""Sibling link must be mutual and not self-referencing."""
+		if not self.sibling:
+			return
+		if self.sibling == self.name:
+			frappe.throw(_("A student cannot be their own sibling"))
+		back = frappe.db.get_value("Student", self.sibling, "sibling")
+		if back and back != self.name:
+			frappe.throw(_("{0} is already linked as sibling of {1}").format(self.sibling, back))
 
 	def on_update(self):
 		if self.student_user and self.status == "Active":

@@ -8,7 +8,7 @@
  "is_standard": 1,
  "public": 1,
  "sequence_id": 5.0,
- "content": "[{\"id\": \"header0\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Academy</b></span>\", \"col\": 12}}, {\"id\": \"sc0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Student\", \"col\": 3}}, {\"id\": \"sc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Program\", \"col\": 3}}, {\"id\": \"sc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Batch\", \"col\": 3}}, {\"id\": \"sc3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Class Session\", \"col\": 3}}, {\"id\": \"sc4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Fee Invoice\", \"col\": 3}}, {\"id\": \"sc5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Coach\", \"col\": 3}}, {\"id\": \"card0\", \"type\": \"card\", \"data\": {\"card_name\": \"Masters\", \"col\": 4}}, {\"id\": \"card1\", \"type\": \"card\", \"data\": {\"card_name\": \"Operations\", \"col\": 4}}, {\"id\": \"card2\", \"type\": \"card\", \"data\": {\"card_name\": \"Reports\", \"col\": 4}}, {\"id\": \"nc0\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Students\", \"col\": 3}}, {\"id\": \"nc1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Sessions Today\", \"col\": 3}}, {\"id\": \"nc2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Outstanding Fees\", \"col\": 3}}, {\"id\": \"chart0\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Fee Collections\", \"col\": 6}}]",
+ "content": "[{\"id\":\"header0\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Academy</b></span>\",\"col\":12}},{\"id\":\"sc0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Student\",\"col\":3}},{\"id\":\"sc1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Program\",\"col\":3}},{\"id\":\"sc2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Batch\",\"col\":3}},{\"id\":\"sc3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Class Session\",\"col\":3}},{\"id\":\"sc4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fee Invoice\",\"col\":3}},{\"id\":\"sc5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Coach\",\"col\":3}},{\"id\":\"card0\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"card1\",\"type\":\"card\",\"data\":{\"card_name\":\"Operations\",\"col\":4}},{\"id\":\"card2\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"nc0\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Active Students\",\"col\":3}},{\"id\":\"nc1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Sessions Today\",\"col\":3}},{\"id\":\"nc2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Outstanding Fees\",\"col\":3}},{\"id\":\"chart0\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Monthly Fee Collections\",\"col\":6}},{\"id\":\"nc3101\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Leads\",\"col\":3}},{\"id\":\"nc4102\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Makeup Credits\",\"col\":3}},{\"id\":\"nc5103\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Avg Session Rating\",\"col\":3}}]",
  "shortcuts": [
   {
    "type": "DocType",
@@ -222,6 +222,27 @@
    "number_card_name": "Outstanding Fees",
    "label": "Outstanding Fees",
    "color": "#EC8F4B",
+   "show_name": 1
+  },
+  {
+   "id": "open_leads",
+   "number_card_name": "Open Leads",
+   "label": "Open Leads",
+   "color": "#7B61FF",
+   "show_name": 1
+  },
+  {
+   "id": "open_makeup_credits",
+   "number_card_name": "Open Makeup Credits",
+   "label": "Open Makeup Credits",
+   "color": "#29CD42",
+   "show_name": 1
+  },
+  {
+   "id": "avg_session_rating",
+   "number_card_name": "Avg Session Rating",
+   "label": "Avg Session Rating",
+   "color": "#ECAD4B",
    "show_name": 1
   }
  ],

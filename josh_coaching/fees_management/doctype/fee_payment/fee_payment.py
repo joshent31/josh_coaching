@@ -50,5 +50,7 @@ def create_fee_receipt(payment: Document) -> Document:
 	receipt.currency = payment.currency
 	receipt.mode_of_payment = payment.mode_of_payment
 	receipt.posting_date = payment.posting_date or today()
+	if payment.invoice:
+		receipt.tax_amount = frappe.db.get_value("Fee Invoice", payment.invoice, "tax_amount")
 	receipt.insert(ignore_permissions=True)
 	return receipt

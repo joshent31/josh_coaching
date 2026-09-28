@@ -76,6 +76,22 @@ def _period_label(billing_date: str) -> str:
 	return getdate(billing_date).strftime("%b %Y")
 
 
+def _effective_discount(enr) -> float:
+	"""Enrollment discount, bumped to the sibling discount when a sibling is also enrolled."""
+	base = flt(enr.discount_percent)
+	sibling_pct = flt(frappe.db.get_single_value("Coaching Settings", "sibling_discount_percent") or 0)
+	if not sibling_pct:
+		return base
+	sibling = frappe.db.get_value("Student", enr.student, "sibling")
+	if not sibling:
+		return base
+	sibling_enrolled = frappe.db.exists(
+		"Enrollment",
+		{"student": sibling, "status": "Active", "docstatus": 1},
+	)
+	return max(base, sibling_pct) if sibling_enrolled else base
+
+
 def _make_invoice_from_enrollment(enr) -> object:
 	plan = frappe.get_doc("Fee Plan", enr.fee_plan)
 	invoice = frappe.new_doc("Fee Invoice")
@@ -87,7 +103,7 @@ def _make_invoice_from_enrollment(enr) -> object:
 	invoice.currency = plan.currency
 	invoice.billing_period = _period_label(enr.next_billing_date)
 
-	discount = flt(enr.discount_percent)
+	discount = _effective_discount(enr)
 	for row in plan.components:
 		amount = flt(row.amount)
 		if discount:

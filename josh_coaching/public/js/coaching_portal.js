@@ -9,10 +9,14 @@ frappe.ready(function () {
 		callback(r) {
 			document.getElementById("portal-loading").style.display = "none";
 			document.getElementById("portal-content").style.display = "";
-			render_students(r.message.students || []);
-			render_sessions(r.message.sessions || []);
-			render_invoices(r.message.invoices || []);
-			render_qr_pass(r.message.students || []);
+			const data = r.message;
+			render_students(data.students || []);
+			render_sessions(data.sessions || []);
+			render_invoices(data.invoices || []);
+			render_qr_pass(data.students || []);
+			render_makeup(data.makeup_credits || []);
+			fill_feedback_form(data.students || [], data.sessions || []);
+			render_progress(data.students || []);
 		},
 	});
 
@@ -138,6 +142,104 @@ frappe.ready(function () {
 							<h5>${frappe.utils.escape_html(s.student_name)}</h5>
 							<img src="${r.message.qr}" style="max-width:220px;margin:8px auto;" />
 							<p class="text-muted mb-0">${__("Show this pass at the front desk")}</p>
+						</div>
+					`);
+					wrap.appendChild(block);
+				},
+			});
+		});
+	}
+
+	function render_makeup(credits) {
+		const wrap = document.getElementById("makeup-list");
+		if (!credits.length) {
+			wrap.innerHTML = `<p class="text-muted">${__("No open makeup credits")}</p>`;
+			return;
+		}
+		credits.forEach((c) => {
+			wrap.appendChild(el(`
+				<div class="card p-3 d-flex flex-row justify-content-between align-items-center">
+					<div>
+						<b>${frappe.utils.escape_html(c.student_name)}</b>
+						<p class="mb-0 text-muted">${frappe.utils.escape_html(c.reason)} · expires ${c.expires_on}</p>
+					</div>
+					<span class="badge badge-success">${frappe.utils.escape_html(c.status)}</span>
+				</div>
+			`));
+		});
+	}
+
+	function fill_feedback_form(students, sessions) {
+		const sSel = document.getElementById("fb-student");
+		students.forEach((s) => {
+			const opt = document.createElement("option");
+			opt.value = s.name;
+			opt.textContent = s.student_name;
+			sSel.appendChild(opt);
+		});
+		const sessSel = document.getElementById("fb-session");
+		sessions.forEach((s) => {
+			const opt = document.createElement("option");
+			opt.value = s.name;
+			opt.textContent = `${s.batch} — ${s.session_date}`;
+			sessSel.appendChild(opt);
+		});
+		document.getElementById("fb-submit").addEventListener("click", () => {
+			const result = document.getElementById("fb-result");
+			frappe.call({
+				method: "josh_coaching.api.portal.submit_session_feedback",
+				args: {
+					class_session: sessSel.value,
+					student: sSel.value,
+					rating: parseFloat(document.getElementById("fb-rating").value || 0),
+					comments: document.getElementById("fb-comments").value,
+				},
+				callback() {
+					result.textContent = __("Thank you for your feedback!");
+					result.className = "ok";
+				},
+				error() {
+					result.textContent = __("Could not submit feedback");
+					result.className = "err";
+				},
+			});
+		});
+	}
+
+	function render_progress(students) {
+		const wrap = document.getElementById("progress-timeline");
+		students.forEach((s) => {
+			frappe.call({
+				method: "josh_coaching.api.portal.get_progress_timeline",
+				args: { student: s.name },
+				callback(r) {
+					const m = r.message;
+					const items = [];
+					(m.evaluations || []).forEach((e) =>
+						items.push(`
+							<div class="card p-3 mb-2">
+								<b>${__("Skill Evaluation")}</b> — ${e.evaluation_date}
+								<p class="mb-0 text-muted">${e.percentage}% · ${frappe.utils.escape_html(e.recommendation)}</p>
+							</div>`)
+					);
+					(m.certificates || []).forEach((c) =>
+						items.push(`
+							<div class="card p-3 mb-2" style="border-left:4px solid #7B61FF;">
+								<b>${__("Certificate")}</b> — ${c.issue_date}
+								<p class="mb-0 text-muted">${frappe.utils.escape_html(c.certificate_type)} · ${frappe.utils.escape_html(c.level_title || "")}</p>
+							</div>`)
+					);
+					(m.events || []).forEach((ev) =>
+						items.push(`
+							<div class="card p-3 mb-2" style="border-left:4px solid #ECAD4B;">
+								<b>${frappe.utils.escape_html(ev.event)}</b>
+								<p class="mb-0 text-muted">${frappe.utils.escape_html(ev.result)}</p>
+							</div>`)
+					);
+					const block = el(`
+						<div class="mb-4">
+							<h5>${frappe.utils.escape_html(s.student_name)}</h5>
+							${items.length ? items.join("") : `<p class="text-muted">${__("No milestones yet")}</p>`}
 						</div>
 					`);
 					wrap.appendChild(block);

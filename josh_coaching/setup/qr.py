@@ -110,6 +110,8 @@ def check_in_student(payload: str, session: str | None = None, method: str = "QR
 	attendance.marked_by = frappe.session.user
 	attendance.insert(ignore_permissions=True)
 
+	_pack_consume(student)
+
 	return {
 		"status": "ok",
 		"message": _("Welcome, {0}! Checked in to {1}").format(
@@ -117,6 +119,22 @@ def check_in_student(payload: str, session: str | None = None, method: str = "QR
 		),
 		"attendance": attendance.name,
 	}
+
+
+def _pack_consume(student: str):
+	"""If the student holds an active Session Pack, consume one session."""
+	pack = frappe.get_all(
+		"Session Pack",
+		filters={"student": student, "status": "Active"},
+		order_by="expires_on asc",
+		limit=1,
+		pluck="name",
+	)
+	if pack:
+		try:
+			frappe.get_doc("Session Pack", pack[0]).consume()
+		except Exception:  # noqa: BLE001 — pack issues must not block check-in
+			frappe.log_error(message=frappe.get_traceback(), title="Pack consume failed")
 
 
 def _resolve_student(payload: str) -> str | None:

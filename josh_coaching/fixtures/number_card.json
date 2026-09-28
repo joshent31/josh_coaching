@@ -40,5 +40,56 @@
   "is_public": 1,
   "function": "Sum",
   "aggregate_function_based_on": "amount"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Open Leads",
+  "label": "Open Leads",
+  "type": "Document Type",
+  "document_type": "Lead Inquiry",
+  "filters_json": "[[\"status\", \"in\", [\"New\", \"In Progress\"]]]",
+  "is_public": 1,
+  "function": "Count"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Open Makeup Credits",
+  "label": "Open Makeup Credits",
+  "type": "Document Type",
+  "document_type": "Makeup Credit",
+  "filters_json": "[[\"status\", \"=\", \"Open\"]]",
+  "is_public": 1,
+  "function": "Count"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Equipment Outstanding",
+  "label": "Equipment Outstanding",
+  "type": "Document Type",
+  "document_type": "Equipment Issue",
+  "filters_json": "[[\"status\", \"=\", \"Issued\"]]",
+  "is_public": 1,
+  "function": "Count"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Avg Session Rating",
+  "label": "Avg Session Rating",
+  "type": "Document Type",
+  "document_type": "Session Feedback",
+  "filters_json": "[]",
+  "is_public": 1,
+  "function": "Average",
+  "aggregate_function_based_on": "rating"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Frozen Enrollments",
+  "label": "Frozen Enrollments",
+  "type": "Document Type",
+  "document_type": "Enrollment",
+  "filters_json": "[[\"freeze_status\", \"=\", \"Frozen\"]]",
+  "is_public": 1,
+  "function": "Count"
  }
 ]

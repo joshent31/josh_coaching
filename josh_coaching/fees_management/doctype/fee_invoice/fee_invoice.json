@@ -111,6 +111,28 @@
    "options": "currency"
   },
   {
+   "fieldname": "tax_rate",
+   "fieldtype": "Percent",
+   "label": "Tax Rate %",
+   "default": "0",
+   "description": "GST/VAT applied on the taxable total."
+  },
+  {
+   "fieldname": "tax_amount",
+   "fieldtype": "Currency",
+   "label": "Tax Amount",
+   "read_only": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "read_only": 1,
+   "options": "currency",
+   "in_list_view": 1
+  },
+  {
    "fieldname": "column_break_2",
    "fieldtype": "Column Break",
    "label": ""

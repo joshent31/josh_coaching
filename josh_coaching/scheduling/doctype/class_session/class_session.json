@@ -77,6 +77,20 @@
    "options": "Coach"
   },
   {
+   "fieldname": "substitute_trainer",
+   "fieldtype": "Link",
+   "label": "Substitute Trainer",
+   "options": "Coach",
+   "in_standard_filter": 1,
+   "description": "One-session cover when the regular trainer is unavailable."
+  },
+  {
+   "fieldname": "substitute_reason",
+   "fieldtype": "Small Text",
+   "label": "Substitution Reason",
+   "depends_on": "substitute_trainer"
+  },
+  {
    "fieldname": "column_break_1",
    "fieldtype": "Column Break",
    "label": ""

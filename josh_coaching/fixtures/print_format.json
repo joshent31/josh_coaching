@@ -26,4 +26,14 @@
   "standard": "Yes",
   "html": "<div class=\"print-format\" style=\"text-align:center;\">\n  <h2>Session Check-in</h2>\n  <p style=\"font-size:16px;\"><b>{{ doc.batch }}</b> &mdash; {{ doc.session_date }} {{ doc.start_time }} - {{ doc.end_time }}</p>\n  <p style=\"color:#666;\">{{ doc.venue or '' }}</p>\n  <img src=\"{{ qr_image(doc) or '' }}\" style=\"width:280px;height:280px;\" />\n  <p style=\"margin-top:12px;color:#888;\">Scan this code when you arrive. Valid for {{ doc.checkin_window_minutes }} minutes after generation.</p>\n</div>"
  }
+ ,
+ {
+  "doctype": "Print Format",
+  "name": "Certificate of Achievement",
+  "doc_type": "Certificate",
+  "module": "Student Management",
+  "print_format_type": "Jinja",
+  "standard": "Yes",
+  "html": "<div class=\"print-format\" style=\"text-align:center; border:6px double #7B61FF; padding:40px; border-radius:16px;\">\n  <h1 style=\"letter-spacing:4px; color:#7B61FF;\">CERTIFICATE</h1>\n  <h3 style=\"margin-top:0; color:#666;\">of {{ doc.certificate_type }}</h3>\n  <p style=\"font-size:16px; margin-top:24px;\">This certificate is proudly presented to</p>\n  <h2 style=\"margin:8px 0;\">{{ doc.student_name or doc.student }}</h2>\n  <p style=\"font-size:15px;\">for successfully completing\n    <b>{{ doc.level_title or '' }}</b> in <b>{{ doc.program }}</b>\n  </p>\n  {% if doc.remarks %}<p style=\"color:#555; font-style:italic;\">\"{{ doc.remarks }}\"</p>{% endif %}\n  <table style=\"width:100%; margin-top:48px;\"><tr>\n    <td style=\"text-align:center;\">____________________<br/>{{ frappe.db.get_value('Coach', doc.signed_by, 'trainer_name') or '' }}<br/><small>Trainer</small></td>\n    <td style=\"text-align:center;\">{{ frappe.utils.formatdate(doc.issue_date) }}<br/><small>Date</small></td>\n  </tr></table>\n  <p style=\"color:#999; margin-top:24px;\"><small>Certificate No: {{ doc.name }}</small></p>\n</div>"
+ }
 ]

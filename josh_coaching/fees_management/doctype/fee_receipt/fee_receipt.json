@@ -61,6 +61,13 @@
    "in_list_view": 1
   },
   {
+   "fieldname": "tax_amount",
+   "fieldtype": "Currency",
+   "label": "Tax Included",
+   "read_only": 1,
+   "options": "currency"
+  },
+  {
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",
