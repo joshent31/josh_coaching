@@ -1,0 +1,109 @@
+{
+ "doctype": "DocType",
+ "name": "Sports Discipline",
+ "module": "Academy Core",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "field:discipline_name",
+ "fields": [
+  {
+   "fieldname": "discipline_name",
+   "fieldtype": "Data",
+   "label": "Discipline Name",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "Sports\nDance\nGymnastics\nMartial Arts\nAquatics\nAcademics\nMusic\nYoga & Fitness\nOther",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "icon",
+   "fieldtype": "Data",
+   "label": "Icon",
+   "description": "Optional emoji or icon name shown in the portal."
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_rules",
+   "fieldtype": "Section Break",
+   "label": "Rules"
+  },
+  {
+   "fieldname": "min_age",
+   "fieldtype": "Int",
+   "label": "Minimum Age"
+  },
+  {
+   "fieldname": "max_age",
+   "fieldtype": "Int",
+   "label": "Maximum Age"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "max_batch_size",
+   "fieldtype": "Int",
+   "label": "Max Batch Size",
+   "description": "Default cap suggested when creating batches of this discipline."
+  },
+  {
+   "fieldname": "equipment_required",
+   "fieldtype": "Check",
+   "label": "Equipment Required"
+  },
+  {
+   "fieldname": "equipment_notes",
+   "fieldtype": "Small Text",
+   "label": "Equipment Notes"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nActive\nDiscontinued",
+   "default": "Draft",
+   "in_standard_filter": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy User",
+   "read": 1
+  }
+ ]
+}

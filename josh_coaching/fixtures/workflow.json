@@ -1,0 +1,59 @@
+[
+ {
+  "doctype": "Workflow",
+  "name": "Fee Invoice Approval Workflow",
+  "document_type": "Fee Invoice",
+  "workflow_name": "Fee Invoice Approval Workflow",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "workflow_state_field": "workflow_state",
+  "states": [
+   {
+    "state": "Draft",
+    "doc_status": "0",
+    "allow_edit": "Academy User"
+   },
+   {
+    "state": "Pending Approval",
+    "doc_status": "0",
+    "allow_edit": "Academy User"
+   },
+   {
+    "state": "Approved",
+    "doc_status": "1",
+    "allow_edit": "Academy Manager"
+   },
+   {
+    "state": "Cancelled",
+    "doc_status": "2",
+    "allow_edit": "Academy Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "state": "Draft",
+    "action": "Submit for Approval",
+    "next_state": "Pending Approval",
+    "allowed": "Academy User"
+   },
+   {
+    "state": "Pending Approval",
+    "action": "Approve",
+    "next_state": "Approved",
+    "allowed": "Academy Manager"
+   },
+   {
+    "state": "Pending Approval",
+    "action": "Reject",
+    "next_state": "Draft",
+    "allowed": "Academy Manager"
+   },
+   {
+    "state": "Approved",
+    "action": "Cancel",
+    "next_state": "Cancelled",
+    "allowed": "Academy Manager"
+   }
+  ]
+ }
+]

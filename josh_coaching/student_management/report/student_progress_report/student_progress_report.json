@@ -1,0 +1,14 @@
+{
+ "doctype": "Report",
+ "name": "Student Progress Report",
+ "module": "Student Management",
+ "ref_doctype": "Skill Evaluation",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Academy Manager"},
+  {"role": "Trainer"}
+ ],
+ "disabled": 0
+}

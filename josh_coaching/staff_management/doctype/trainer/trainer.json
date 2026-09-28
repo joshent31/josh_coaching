@@ -1,0 +1,159 @@
+{
+ "doctype": "DocType",
+ "name": "Coach",
+ "module": "Staff Management",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "format:TRN-{#####}",
+ "title_field": "trainer_name",
+ "show_title_field_in_link": 1,
+ "fields": [
+  {
+   "fieldname": "trainer_name",
+   "fieldtype": "Data",
+   "label": "Trainer Name",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee",
+   "description": "Link to ERPNext HR for payroll and leave."
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "System User",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_professional",
+   "fieldtype": "Section Break",
+   "label": "Professional"
+  },
+  {
+   "fieldname": "disciplines",
+   "fieldtype": "Small Text",
+   "label": "Disciplines",
+   "description": "Disciplines this trainer can coach (one per line)."
+  },
+  {
+   "fieldname": "specialization",
+   "fieldtype": "Data",
+   "label": "Specialization"
+  },
+  {
+   "fieldname": "experience_years",
+   "fieldtype": "Int",
+   "label": "Experience (Years)",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "certifications",
+   "fieldtype": "Small Text",
+   "label": "Certifications",
+   "description": "Certification name with expiry, one per line."
+  },
+  {
+   "fieldname": "hourly_rate",
+   "fieldtype": "Currency",
+   "label": "Hourly Rate",
+   "options": "currency"
+  },
+  {
+   "fieldname": "section_contact",
+   "fieldtype": "Section Break",
+   "label": "Contact"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining"
+  },
+  {
+   "fieldname": "section_pay",
+   "fieldtype": "Section Break",
+   "label": "Payroll"
+  },
+  {
+   "fieldname": "salary_structure",
+   "fieldtype": "Link",
+   "label": "Salary Structure",
+   "options": "Salary Structure",
+   "description": "Assigned via ERPNext HR when linked to an Employee."
+  },
+  {
+   "fieldname": "payment_model",
+   "fieldtype": "Select",
+   "label": "Payment Model",
+   "options": "Monthly Salary\nPer Session\nHourly\nRevenue Share",
+   "default": "Monthly Salary"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nOn Leave\nInactive",
+   "default": "Active",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Trainer",
+   "read": 1
+  }
+ ]
+}

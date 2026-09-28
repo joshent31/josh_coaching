@@ -1,0 +1,3 @@
+include josh_coaching/config/*.py
+include josh_coaching/fixtures/*.json
+recursive-include josh_coaching *.json *.js *.css *.html

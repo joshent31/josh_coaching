@@ -1,0 +1,8 @@
+*.pyc
+__pycache__/
+*.egg-info/
+.DS_Store
+*.swp
+node_modules/
+dist/
+.vscode/

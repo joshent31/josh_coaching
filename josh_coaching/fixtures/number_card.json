@@ -1,0 +1,44 @@
+[
+ {
+  "doctype": "Number Card",
+  "name": "Active Students",
+  "label": "Active Students",
+  "type": "Document Type",
+  "document_type": "Student",
+  "filters_json": "[[\"status\", \"=\", \"Active\"]]",
+  "is_public": 1,
+  "function": "Count"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Sessions Today",
+  "label": "Sessions Today",
+  "type": "Document Type",
+  "document_type": "Class Session",
+  "filters_json": "[[\"session_date\", \"=\", \"Today\"], [\"status\", \"in\", [\"Scheduled\", \"In Progress\"]]]",
+  "is_public": 1,
+  "function": "Count"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Outstanding Fees",
+  "label": "Outstanding Fees",
+  "type": "Document Type",
+  "document_type": "Fee Invoice",
+  "filters_json": "[[\"docstatus\", \"=\", 1], [\"status\", \"in\", [\"Unpaid\", \"Partially Paid\", \"Overdue\"]]]",
+  "is_public": 1,
+  "function": "Sum",
+  "aggregate_function_based_on": "outstanding_amount"
+ },
+ {
+  "doctype": "Number Card",
+  "name": "Fees Collected This Month",
+  "label": "Fees Collected This Month",
+  "type": "Document Type",
+  "document_type": "Fee Payment",
+  "filters_json": "[[\"docstatus\", \"=\", 1], [\"posting_date\", \"Timespan\", \"this month\"]]",
+  "is_public": 1,
+  "function": "Sum",
+  "aggregate_function_based_on": "amount"
+ }
+]

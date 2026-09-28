@@ -1,0 +1,15 @@
+{
+ "doctype": "Report",
+ "name": "Batch Attendance Register",
+ "module": "Student Management",
+ "ref_doctype": "Student Attendance",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Academy Manager"},
+  {"role": "Academy User"},
+  {"role": "Trainer"}
+ ],
+ "disabled": 0
+}

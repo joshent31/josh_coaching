@@ -1,0 +1,114 @@
+{
+ "doctype": "DocType",
+ "name": "Staff Shift",
+ "module": "Staff Management",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "format:SHIFT-{YYYY}{MM}-{#####}",
+ "fields": [
+  {
+   "fieldname": "trainer",
+   "fieldtype": "Link",
+   "label": "Trainer",
+   "options": "Coach",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "shift_date",
+   "fieldtype": "Date",
+   "label": "Shift Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_details",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "coaching_center",
+   "fieldtype": "Link",
+   "label": "Coaching Center",
+   "options": "Coaching Center",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "shift_type",
+   "fieldtype": "Select",
+   "label": "Shift Type",
+   "options": "Coaching\nFront Desk\nAdmin\nEvent",
+   "default": "Coaching",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Planned\nCompleted\nAbsent\nSwapped",
+   "default": "Planned",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy User",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Trainer",
+   "read": 1
+  }
+ ]
+}

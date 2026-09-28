@@ -1,0 +1,151 @@
+{
+ "doctype": "DocType",
+ "name": "Skill Evaluation",
+ "module": "Student Management",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 1,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "format:EVAL-{YYYY}-{#####}",
+ "title_field": "student",
+ "show_title_field_in_link": 1,
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "fetch_from": "student.student_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "program",
+   "fieldtype": "Link",
+   "label": "Program",
+   "options": "Program",
+   "reqd": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "Batch",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "section_eval",
+   "fieldtype": "Section Break",
+   "label": "Evaluation"
+  },
+  {
+   "fieldname": "evaluation_date",
+   "fieldtype": "Date",
+   "label": "Evaluation Date",
+   "reqd": 1,
+   "default": "Today"
+  },
+  {
+   "fieldname": "evaluator",
+   "fieldtype": "Link",
+   "label": "Evaluator",
+   "options": "Coach",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "total_score",
+   "fieldtype": "Float",
+   "label": "Total Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "max_score",
+   "fieldtype": "Float",
+   "label": "Max Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "percentage",
+   "fieldtype": "Percent",
+   "label": "Percentage",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_lines",
+   "fieldtype": "Section Break",
+   "label": "Criteria"
+  },
+  {
+   "fieldname": "criteria",
+   "fieldtype": "Table",
+   "label": "Skill Criteria",
+   "options": "Skill Evaluation Line",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_remarks",
+   "fieldtype": "Section Break",
+   "label": ""
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text Editor",
+   "label": "Trainer Remarks"
+  },
+  {
+   "fieldname": "recommendation",
+   "fieldtype": "Select",
+   "label": "Recommendation",
+   "options": "Continue Same Level\nPromote to Next Level\nNeeds Practice\nRefer to Advanced Program",
+   "default": "Continue Same Level"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1
+  },
+  {
+   "role": "Trainer",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1
+  }
+ ]
+}

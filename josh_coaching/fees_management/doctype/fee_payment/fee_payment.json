@@ -1,0 +1,165 @@
+{
+ "doctype": "DocType",
+ "name": "Fee Payment",
+ "module": "Fees Management",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 1,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "format:FPAY-{YYYY}-{#####}",
+ "title_field": "student",
+ "show_title_field_in_link": 1,
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Student Name",
+   "fetch_from": "student.student_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "invoice",
+   "fieldtype": "Link",
+   "label": "Fee Invoice",
+   "options": "Fee Invoice",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_amount",
+   "fieldtype": "Section Break",
+   "label": ""
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount Paid",
+   "reqd": 1,
+   "options": "currency"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "default": "INR",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Select",
+   "label": "Mode",
+   "options": "Cash\nCard\nBank Transfer\nUPI\nCheque\nOnline Gateway\nWallet",
+   "default": "Cash",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "reference_no",
+   "fieldtype": "Data",
+   "label": "Reference No"
+  },
+  {
+   "fieldname": "section_gateway",
+   "fieldtype": "Section Break",
+   "label": "Gateway"
+  },
+  {
+   "fieldname": "gateway",
+   "fieldtype": "Select",
+   "label": "Gateway",
+   "options": "\nRazorpay\nStripe\nPayU\nCashfree\nManual",
+   "default": "Manual"
+  },
+  {
+   "fieldname": "gateway_log",
+   "fieldtype": "Link",
+   "label": "Gateway Log",
+   "options": "Payment Gateway Log",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "gateway_reference",
+   "fieldtype": "Data",
+   "label": "Gateway Reference",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fee_receipt",
+   "fieldtype": "Link",
+   "label": "Receipt",
+   "options": "Fee Receipt",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1
+  },
+  {
+   "role": "Academy User",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1
+  }
+ ]
+}

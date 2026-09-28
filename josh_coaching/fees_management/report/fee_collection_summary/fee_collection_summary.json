@@ -1,0 +1,14 @@
+{
+ "doctype": "Report",
+ "name": "Fee Collection Summary",
+ "module": "Fees Management",
+ "ref_doctype": "Fee Payment",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Academy Manager"},
+  {"role": "Accounts User"}
+ ],
+ "disabled": 0
+}

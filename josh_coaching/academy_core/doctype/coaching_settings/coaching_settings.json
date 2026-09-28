@@ -1,0 +1,104 @@
+{
+ "doctype": "DocType",
+ "name": "Coaching Settings",
+ "module": "Academy Core",
+ "custom": 0,
+ "issingle": 1,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "section_general",
+   "fieldtype": "Section Break",
+   "label": ""
+  },
+  {
+   "fieldname": "default_discipline",
+   "fieldtype": "Link",
+   "label": "Default Discipline",
+   "options": "Sports Discipline",
+   "description": "Pre-selected when creating new programs or batches."
+  },
+  {
+   "fieldname": "default_venue",
+   "fieldtype": "Data",
+   "label": "Default Venue"
+  },
+  {
+   "fieldname": "cb_general",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "default_currency",
+   "fieldtype": "Link",
+   "label": "Default Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "allow_portal_payments",
+   "fieldtype": "Check",
+   "label": "Allow Portal Payments",
+   "default": "1",
+   "description": "Students/guardians can pay fee invoices from the portal."
+  },
+  {
+   "fieldname": "section_attendance",
+   "fieldtype": "Section Break",
+   "label": "Attendance"
+  },
+  {
+   "fieldname": "no_show_grace_minutes",
+   "fieldtype": "Int",
+   "label": "No-Show Grace Minutes",
+   "default": "30",
+   "description": "Sessions are flagged No Show this many minutes after start time if attendance is empty."
+  },
+  {
+   "fieldname": "qr_attendance_enabled",
+   "fieldtype": "Check",
+   "label": "Enable QR Attendance",
+   "default": "1"
+  },
+  {
+   "fieldname": "qr_token_validity_minutes",
+   "fieldtype": "Int",
+   "label": "QR Token Validity (Minutes)",
+   "default": "15"
+  },
+  {
+   "fieldname": "section_fees",
+   "fieldtype": "Section Break",
+   "label": "Fees"
+  },
+  {
+   "fieldname": "overdue_escalation_days",
+   "fieldtype": "Int",
+   "label": "Overdue Escalation Days",
+   "default": "7",
+   "description": "Notify managers when an invoice is unpaid this many days past due date."
+  },
+  {
+   "fieldname": "late_fee_component",
+   "fieldtype": "Link",
+   "label": "Late Fee Component",
+   "options": "Fee Component"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1
+  }
+ ]
+}

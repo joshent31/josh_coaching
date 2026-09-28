@@ -1,0 +1,5 @@
+Student Management
+Scheduling
+Staff Management
+Fees Management
+Academy Core

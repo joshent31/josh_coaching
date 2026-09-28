@@ -1,0 +1,194 @@
+{
+ "doctype": "Workspace",
+ "name": "Academy",
+ "label": "Academy",
+ "title": "Academy",
+ "module": "Academy Core",
+ "icon": "octicon octicon-organization",
+ "is_standard": 1,
+ "public": 1,
+ "sequence_id": 5.0,
+ "content": "[{\"id\": \"header0\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Academy</b></span>\", \"col\": 12}}, {\"id\": \"sc0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Student\", \"col\": 3}}, {\"id\": \"sc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Program\", \"col\": 3}}, {\"id\": \"sc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Batch\", \"col\": 3}}, {\"id\": \"sc3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Class Session\", \"col\": 3}}, {\"id\": \"sc4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Fee Invoice\", \"col\": 3}}, {\"id\": \"sc5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Coach\", \"col\": 3}}, {\"id\": \"card0\", \"type\": \"card\", \"data\": {\"card_name\": \"Masters\", \"col\": 4}}, {\"id\": \"card1\", \"type\": \"card\", \"data\": {\"card_name\": \"Operations\", \"col\": 4}}, {\"id\": \"card2\", \"type\": \"card\", \"data\": {\"card_name\": \"Reports\", \"col\": 4}}, {\"id\": \"nc0\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Students\", \"col\": 3}}, {\"id\": \"nc1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Sessions Today\", \"col\": 3}}, {\"id\": \"nc2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Outstanding Fees\", \"col\": 3}}, {\"id\": \"chart0\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Fee Collections\", \"col\": 6}}]",
+ "shortcuts": [
+  {
+   "type": "DocType",
+   "label": "Student",
+   "link_to": "Student",
+   "doc_view": "List",
+   "icon": "list",
+   "color": "Grey",
+   "stats_filter": "{}"
+  },
+  {
+   "type": "DocType",
+   "label": "Program",
+   "link_to": "Program",
+   "doc_view": "List",
+   "icon": "list",
+   "color": "Grey",
+   "stats_filter": "{}"
+  },
+  {
+   "type": "DocType",
+   "label": "Batch",
+   "link_to": "Batch",
+   "doc_view": "List",
+   "icon": "list",
+   "color": "Grey",
+   "stats_filter": "{}"
+  },
+  {
+   "type": "DocType",
+   "label": "Class Session",
+   "link_to": "Class Session",
+   "doc_view": "List",
+   "icon": "list",
+   "color": "Grey",
+   "stats_filter": "{}"
+  },
+  {
+   "type": "DocType",
+   "label": "Fee Invoice",
+   "link_to": "Fee Invoice",
+   "doc_view": "List",
+   "icon": "list",
+   "color": "Grey",
+   "stats_filter": "{}"
+  },
+  {
+   "type": "DocType",
+   "label": "Coach",
+   "link_to": "Coach",
+   "doc_view": "List",
+   "icon": "list",
+   "color": "Grey",
+   "stats_filter": "{}"
+  }
+ ],
+ "links": [
+  {
+   "type": "Card",
+   "card_name": "Masters",
+   "label": "Masters",
+   "links": [
+    {
+     "label": "Sports Discipline",
+     "link_to": "Sports Discipline",
+     "type": "DocType"
+    },
+    {
+     "label": "Coaching Center",
+     "link_to": "Coaching Center",
+     "type": "DocType"
+    },
+    {
+     "label": "Program",
+     "link_to": "Program",
+     "type": "DocType"
+    },
+    {
+     "label": "Batch",
+     "link_to": "Batch",
+     "type": "DocType"
+    },
+    {
+     "label": "Skill Evaluation",
+     "link_to": "Skill Evaluation",
+     "type": "DocType"
+    }
+   ]
+  },
+  {
+   "type": "Card",
+   "card_name": "Operations",
+   "label": "Operations",
+   "links": [
+    {
+     "label": "Student",
+     "link_to": "Student",
+     "type": "DocType"
+    },
+    {
+     "label": "Enrollment",
+     "link_to": "Enrollment",
+     "type": "DocType"
+    },
+    {
+     "label": "Student Attendance",
+     "link_to": "Student Attendance",
+     "type": "DocType"
+    },
+    {
+     "label": "Class Session",
+     "link_to": "Class Session",
+     "type": "DocType"
+    },
+    {
+     "label": "Fee Invoice",
+     "link_to": "Fee Invoice",
+     "type": "DocType"
+    }
+   ]
+  },
+  {
+   "type": "Card",
+   "card_name": "Reports",
+   "label": "Reports",
+   "links": [
+    {
+     "label": "Batch Attendance Register",
+     "link_to": "Batch Attendance Register",
+     "type": "Report"
+    },
+    {
+     "label": "Student Outstanding Fees",
+     "link_to": "Student Outstanding Fees",
+     "type": "Report"
+    },
+    {
+     "label": "Attendance Percentage",
+     "link_to": "Attendance Percentage",
+     "type": "Report"
+    },
+    {
+     "label": "Fee Collection Summary",
+     "link_to": "Fee Collection Summary",
+     "type": "Report"
+    }
+   ]
+  }
+ ],
+ "charts": [
+  {
+   "id": "chart0",
+   "chart_name": "Monthly Fee Collections",
+   "label": "Monthly Fee Collections",
+   "color": "#7B61FF",
+   "type": "chart"
+  }
+ ],
+ "number_cards": [
+  {
+   "id": "nc0",
+   "number_card_name": "Active Students",
+   "label": "Active Students",
+   "color": "#29CD42",
+   "show_name": 1
+  },
+  {
+   "id": "nc1",
+   "number_card_name": "Sessions Today",
+   "label": "Sessions Today",
+   "color": "#ECAD4B",
+   "show_name": 1
+  },
+  {
+   "id": "nc2",
+   "number_card_name": "Outstanding Fees",
+   "label": "Outstanding Fees",
+   "color": "#EC8F4B",
+   "show_name": 1
+  }
+ ],
+ "quick_lists": []
+}

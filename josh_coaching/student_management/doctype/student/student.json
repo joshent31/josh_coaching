@@ -1,0 +1,190 @@
+{
+ "doctype": "DocType",
+ "name": "Student",
+ "module": "Student Management",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "format:STU-{YYYY}-{#####}",
+ "title_field": "student_name",
+ "show_title_field_in_link": 1,
+ "fields": [
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "student_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cb0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "student_id",
+   "fieldtype": "Data",
+   "label": "Student ID Card No",
+   "unique": 1,
+   "description": "Printed on the ID card and encoded in the QR code."
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "Male\nFemale\nOther"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "section_contact",
+   "fieldtype": "Section Break",
+   "label": "Contact"
+  },
+  {
+   "fieldname": "student_email",
+   "fieldtype": "Data",
+   "label": "Student Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "student_mobile",
+   "fieldtype": "Data",
+   "label": "Student Mobile",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "section_guardian",
+   "fieldtype": "Section Break",
+   "label": "Guardian"
+  },
+  {
+   "fieldname": "guardian_name",
+   "fieldtype": "Data",
+   "label": "Guardian Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "guardian_mobile",
+   "fieldtype": "Data",
+   "label": "Guardian Mobile",
+   "options": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "guardian_email",
+   "fieldtype": "Data",
+   "label": "Guardian Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "relation",
+   "fieldtype": "Select",
+   "label": "Relation",
+   "options": "Father\nMother\nGuardian\nSibling\nSelf"
+  },
+  {
+   "fieldname": "section_portal",
+   "fieldtype": "Section Break",
+   "label": "Portal & QR"
+  },
+  {
+   "fieldname": "student_user",
+   "fieldtype": "Link",
+   "label": "Portal User",
+   "options": "User",
+   "description": "Guardian or student login used for the mobile portal and QR pass."
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "qr_token",
+   "fieldtype": "Data",
+   "label": "QR Token",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nActive\nSuspended\nAlumni\nCancelled",
+   "default": "Draft",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy User",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Trainer",
+   "read": 1
+  }
+ ]
+}

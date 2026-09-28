@@ -1,0 +1,15 @@
+{
+ "doctype": "Report",
+ "name": "Today's Sessions",
+ "module": "Scheduling",
+ "ref_doctype": "Class Session",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Academy Manager"},
+  {"role": "Academy User"},
+  {"role": "Trainer"}
+ ],
+ "disabled": 0
+}

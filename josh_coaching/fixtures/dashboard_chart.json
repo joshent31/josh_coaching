@@ -1,0 +1,37 @@
+[
+ {
+  "doctype": "Dashboard Chart",
+  "name": "Monthly Fee Collections",
+  "chart_name": "Monthly Fee Collections",
+  "chart_type": "Sum",
+  "document_type": "Fee Payment",
+  "based_on": "amount",
+  "time_interval": "Monthly",
+  "filters_json": "[[\"docstatus\", \"=\", 1]]",
+  "is_public": 1
+ },
+ {
+  "doctype": "Dashboard Chart",
+  "name": "Session Bookings by Status",
+  "chart_name": "Sessions by Status",
+  "chart_type": "Group By",
+  "document_type": "Class Session",
+  "group_by_type": "Count",
+  "group_by_based_on": "status",
+  "time_interval": "Daily",
+  "filters_json": "[]",
+  "is_public": 1
+ },
+ {
+  "doctype": "Dashboard Chart",
+  "name": "Students by Program",
+  "chart_name": "Students by Program",
+  "chart_type": "Group By",
+  "document_type": "Student",
+  "group_by_type": "Count",
+  "group_by_based_on": "status",
+  "time_interval": "Daily",
+  "filters_json": "[]",
+  "is_public": 1
+ }
+]

@@ -1,0 +1,108 @@
+[
+ {
+  "doctype": "Notification",
+  "name": "Fee Invoice Overdue Alert",
+  "subject": "Fee Invoice {{ doc.name }} is Overdue",
+  "document_type": "Fee Invoice",
+  "event": "Value Change",
+  "channel": "System Notification",
+  "condition": "doc.status == \"Overdue\"",
+  "date_changed": "status",
+  "days_in_advance": null,
+  "message": "<p>Fee Invoice {{ doc.name }} for {{ doc.student_name }} ({{ doc.total_amount }} {{ doc.currency }}) is overdue since {{ doc.due_date }}.</p>",
+  "enabled": 1,
+  "recipients": [
+   {
+    "receiver_by_role": "Academy Manager"
+   }
+  ],
+  "is_standard": 0,
+  "module": "Fees Management",
+  "value_changed": "status"
+ },
+ {
+  "doctype": "Notification",
+  "name": "Fee Payment Received",
+  "subject": "Payment Received: {{ doc.name }}",
+  "document_type": "Fee Payment",
+  "event": "Submit",
+  "channel": "System Notification",
+  "condition": "",
+  "date_changed": null,
+  "days_in_advance": null,
+  "message": "<p>Payment of {{ doc.amount }} {{ doc.currency }} received for {{ doc.student_name }} against invoice {{ doc.invoice }}. Receipt {{ doc.fee_receipt }} issued.</p>",
+  "enabled": 1,
+  "recipients": [
+   {
+    "receiver_by_role": "Academy Manager"
+   }
+  ],
+  "is_standard": 0,
+  "module": "Fees Management"
+ },
+ {
+  "doctype": "Notification",
+  "name": "Session Cancelled Alert",
+  "subject": "Session Cancelled: {{ doc.batch }} on {{ doc.session_date }}",
+  "document_type": "Class Session",
+  "event": "Value Change",
+  "channel": "System Notification",
+  "condition": "doc.status == \"Cancelled\"",
+  "date_changed": "status",
+  "days_in_advance": null,
+  "message": "<p>Session {{ doc.name }} for batch {{ doc.batch }} on {{ doc.session_date }} at {{ doc.start_time }} has been cancelled.</p>",
+  "enabled": 1,
+  "recipients": [
+   {
+    "receiver_by_role": "Academy Manager"
+   },
+   {
+    "receiver_by_document_field": "trainer"
+   }
+  ],
+  "is_standard": 0,
+  "module": "Scheduling",
+  "value_changed": "status"
+ },
+ {
+  "doctype": "Notification",
+  "name": "Student Absence Streak Alert",
+  "subject": "Attendance Alert: {{ doc.student_name }}",
+  "document_type": "Student Attendance",
+  "event": "Save",
+  "channel": "System Notification",
+  "condition": "doc.present == \"Absent\"",
+  "date_changed": null,
+  "days_in_advance": null,
+  "message": "<p>{{ doc.student_name }} was marked ABSENT on {{ doc.attendance_date }} (method: {{ doc.checkin_method }}).</p>",
+  "enabled": 1,
+  "recipients": [
+   {
+    "receiver_by_role": "Academy Manager"
+   }
+  ],
+  "is_standard": 0,
+  "module": "Student Management"
+ },
+ {
+  "doctype": "Notification",
+  "name": "Trainer Shift Swap Request",
+  "subject": "Staff Shift {{ doc.name }} Swapped",
+  "document_type": "Staff Shift",
+  "event": "Value Change",
+  "channel": "System Notification",
+  "condition": "doc.status == \"Swapped\"",
+  "date_changed": "status",
+  "days_in_advance": null,
+  "message": "<p>Shift {{ doc.name }} on {{ doc.shift_date }} ({{ doc.start_time }} - {{ doc.end_time }}) has been swapped. Please review the roster.</p>",
+  "enabled": 1,
+  "recipients": [
+   {
+    "receiver_by_role": "Academy Manager"
+   }
+  ],
+  "is_standard": 0,
+  "module": "Staff Management",
+  "value_changed": "status"
+ }
+]

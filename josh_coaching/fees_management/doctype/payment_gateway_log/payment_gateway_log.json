@@ -1,0 +1,125 @@
+{
+ "doctype": "DocType",
+ "name": "Payment Gateway Log",
+ "module": "Fees Management",
+ "custom": 0,
+ "istable": 0,
+ "is_submittable": 0,
+ "editable_grid": 1,
+ "track_changes": 1,
+ "autoname": "format:PGW-{YYYY}{MM}{DD}-{#####}",
+ "fields": [
+  {
+   "fieldname": "gateway",
+   "fieldtype": "Select",
+   "label": "Gateway",
+   "options": "Razorpay\nStripe\nPayU\nCashfree\nManual",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_0",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "invoice",
+   "fieldtype": "Link",
+   "label": "Fee Invoice",
+   "options": "Fee Invoice",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "label": "Student",
+   "options": "Student",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "section_request",
+   "fieldtype": "Section Break",
+   "label": "Request"
+  },
+  {
+   "fieldname": "order_id",
+   "fieldtype": "Data",
+   "label": "Order ID",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "currency",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Initiated\nAuthorized\nCaptured\nFailed\nRefunded",
+   "default": "Initiated",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "gateway_reference",
+   "fieldtype": "Data",
+   "label": "Gateway Payment ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_response",
+   "fieldtype": "Section Break",
+   "label": "Response"
+  },
+  {
+   "fieldname": "response_payload",
+   "fieldtype": "Long Text",
+   "label": "Response Payload",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fee_payment",
+   "fieldtype": "Link",
+   "label": "Fee Payment",
+   "options": "Fee Payment",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Academy Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1
+  }
+ ]
+}

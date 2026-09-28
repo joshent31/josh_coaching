@@ -1,0 +1,89 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ _("Session Check-in") }}{% endblock %}
+
+{% block page_content %}
+<div class="coaching-checkin">
+  <h3 class="mb-3">{{ _("QR Check-in") }}</h3>
+  <p class="text-muted">{{ _("Scan the student's ID card, or pick a session and mark attendance manually.") }}</p>
+
+  <div class="card p-3 mb-3">
+    <div class="form-group">
+      <label>{{ _("Class Session") }}</label>
+      <select id="checkin-session" class="form-control"></select>
+    </div>
+    <div class="form-group">
+      <label>{{ _("Student QR / ID") }}</label>
+      <input id="checkin-payload" class="form-control" placeholder="JC-STUDENT:… or scan with a camera app" />
+    </div>
+    <button id="checkin-btn" class="btn btn-primary btn-sm">{{ _("Mark Present") }}</button>
+    <span id="checkin-result" class="ml-3"></span>
+  </div>
+
+  <div class="card p-3">
+    <h5>{{ _("Session QR Poster") }}</h5>
+    <p class="text-muted mb-2">{{ _("Students scan this at the door. Regenerate to rotate the token.") }}</p>
+    <button id="gen-qr-btn" class="btn btn-outline-secondary btn-sm mb-3">{{ _("Show / Rotate QR") }}</button>
+    <div id="session-qr"></div>
+  </div>
+</div>
+
+<style>
+.coaching-checkin img { max-width: 280px; border: 1px solid #eee; border-radius: 8px; }
+#checkin-result.ok { color: #29CD42; font-weight: 600; }
+#checkin-result.err { color: #E44258; font-weight: 600; }
+</style>
+
+<script>
+frappe.ready(function() {
+  if (frappe.session.user === "Guest") return;
+
+  frappe.call({
+    method: "frappe.client.get_list",
+    args: {
+      doctype: "Class Session",
+      filters: { session_date: frappe.datetime.today(), status: ["in", ["Scheduled", "In Progress"]] },
+      fields: ["name", "batch", "start_time"],
+      limit_page_length: 0
+    },
+    callback(r) {
+      const sel = document.getElementById("checkin-session");
+      (r.message || []).forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s.name;
+        opt.textContent = `${s.batch} — ${s.start_time}`;
+        sel.appendChild(opt);
+      });
+    }
+  });
+
+  document.getElementById("checkin-btn").addEventListener("click", () => {
+    const payload = document.getElementById("checkin-payload").value.trim();
+    const session = document.getElementById("checkin-session").value;
+    const result = document.getElementById("checkin-result");
+    if (!payload) { result.textContent = "Enter a QR payload"; result.className = "err"; return; }
+    frappe.call({
+      method: "josh_coaching.api.portal.scan_and_checkin",
+      args: { payload, session: session || null },
+      callback(r) {
+        result.textContent = r.message.message;
+        result.className = r.message.status === "ok" ? "ok" : "err";
+      },
+      error() { result.textContent = "Check-in failed"; result.className = "err"; }
+    });
+  });
+
+  document.getElementById("gen-qr-btn").addEventListener("click", () => {
+    const session = document.getElementById("checkin-session").value;
+    if (!session) return;
+    frappe.call({
+      method: "josh_coaching.api.portal.get_session_qr",
+      args: { session },
+      callback(r) {
+        document.getElementById("session-qr").innerHTML = `<img src="${r.message.qr}" />`;
+      }
+    });
+  });
+});
+</script>
+{% endblock %}

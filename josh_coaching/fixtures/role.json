@@ -1,0 +1,26 @@
+[
+ {
+  "doctype": "Role",
+  "name": "Academy Manager",
+  "role_name": "Academy Manager",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "Academy User",
+  "role_name": "Academy User",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "Trainer",
+  "role_name": "Trainer",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "name": "Student (Portal)",
+  "role_name": "Student (Portal)",
+  "desk_access": 0
+ }
+]
