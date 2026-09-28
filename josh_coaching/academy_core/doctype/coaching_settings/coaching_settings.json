@@ -85,6 +85,64 @@
    "fieldtype": "Link",
    "label": "Late Fee Component",
    "options": "Fee Component"
+  },
+  {
+   "fieldname": "late_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Late Fee Amount",
+   "default": "0",
+   "description": "Flat amount added to overdue invoices when the late fee applies."
+  },
+  {
+   "fieldname": "auto_bill_days_ahead",
+   "fieldtype": "Int",
+   "label": "Auto-bill Days Ahead",
+   "default": "5",
+   "description": "Generate recurring invoices this many days before the next billing date."
+  },
+  {
+   "fieldname": "section_automation",
+   "fieldtype": "Section Break",
+   "label": "Automation"
+  },
+  {
+   "fieldname": "auto_issue_makeup_credits",
+   "fieldtype": "Check",
+   "label": "Auto-issue Makeup Credits",
+   "default": "1",
+   "description": "Grant a makeup credit when a student is marked Absent."
+  },
+  {
+   "fieldname": "makeup_credit_validity_days",
+   "fieldtype": "Int",
+   "label": "Makeup Credit Validity (Days)",
+   "default": "60"
+  },
+  {
+   "fieldname": "auto_issue_certificates",
+   "fieldtype": "Check",
+   "label": "Auto-issue Certificates",
+   "default": "1",
+   "description": "Issue a certificate when an evaluation passes the pass threshold."
+  },
+  {
+   "fieldname": "certificate_pass_percentage",
+   "fieldtype": "Percent",
+   "label": "Certificate Pass Percentage",
+   "default": "75"
+  },
+  {
+   "fieldname": "default_trial_sessions",
+   "fieldtype": "Int",
+   "label": "Default Trial Sessions",
+   "default": "2"
+  },
+  {
+   "fieldname": "lead_followup_days",
+   "fieldtype": "Int",
+   "label": "Lead Follow-up Days",
+   "default": "3",
+   "description": "Remind managers about leads with a follow-up date due."
   }
  ],
  "permissions": [

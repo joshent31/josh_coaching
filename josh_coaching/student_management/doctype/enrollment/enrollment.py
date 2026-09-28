@@ -4,7 +4,7 @@
 import frappe
 from frappe import _
 from frappe.model.document import Document
-from frappe.utils import add_months, nowdate
+from frappe.utils import add_days, add_months, date_diff, getdate, nowdate, today
 
 STATUS_WORKFLOW_MAP = {
 	"Draft": "Draft",
@@ -23,12 +23,30 @@ CYCLE_MONTHS = {
 }
 
 
+def get_frozen_enrollments() -> list[str]:
+	"""Enrollment names currently frozen (excluded from auto-billing)."""
+	return frappe.get_all(
+		"Enrollment",
+		filters={"freeze_status": "Frozen", "docstatus": 1},
+		pluck="name",
+	)
+
+
 class Enrollment(Document):
 	STATUS_WORKFLOW_MAP = STATUS_WORKFLOW_MAP
 
 	def validate(self):
+		self.validate_freeze_dates()
 		self.validate_capacity()
-		self.set_next_billing_date()
+		if self.freeze_status != "Frozen":
+			self.set_next_billing_date()
+
+	def validate_freeze_dates(self):
+		if self.freeze_status == "Frozen":
+			if not self.frozen_from:
+				frappe.throw(_("Frozen From date is required to freeze an enrollment"))
+			if self.frozen_to and getdate(self.frozen_to) < getdate(self.frozen_from):
+				frappe.throw(_("Frozen To cannot be before Frozen From"))
 
 	def before_submit(self):
 		if not self.fee_plan:
@@ -57,6 +75,33 @@ class Enrollment(Document):
 	def on_submit(self):
 		self.db_set("status", "Active")
 		frappe.db.commit()
+
+	@frappe.whitelist()
+	def freeze(self, frozen_from: str, frozen_to: str | None = None, reason: str | None = None):
+		"""Pause this enrollment: skipped by auto-billing and attendance reminders."""
+		self.freeze_status = "Frozen"
+		self.frozen_from = frozen_from
+		self.frozen_to = frozen_to
+		self.freeze_reason = reason
+		self.save(ignore_permissions=True)
+		return self.name
+
+	@frappe.whitelist()
+	def unfreeze(self):
+		"""Resume billing: shift next_billing_date by the frozen duration."""
+		shifted = None
+		if self.frozen_from and self.next_billing_date:
+			end = self.frozen_to or today()
+			days = max(date_diff(end, self.frozen_from), 0)
+			if days:
+				shifted = add_days(self.next_billing_date, days)
+				self.next_billing_date = shifted
+		self.freeze_status = None
+		self.frozen_from = None
+		self.frozen_to = None
+		self.freeze_reason = None
+		self.save(ignore_permissions=True)
+		return shifted
 
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")

@@ -42,7 +42,7 @@ def _require_student_access(student: str):
 def get_my_dashboard() -> dict:
 	"""Mobile dashboard payload for the logged-in portal user."""
 	students = _current_students()
-	out = {"students": [], "invoices": [], "sessions": []}
+	out = {"students": [], "invoices": [], "sessions": [], "makeup_credits": []}
 	for student in students:
 		enrollments = frappe.get_all(
 			"Enrollment",
@@ -76,6 +76,7 @@ def get_my_dashboard() -> dict:
 			order_by="session_date asc, start_time asc",
 			limit=10,
 		)
+	out["makeup_credits"] = get_my_makeup_credits()
 	return out
 
 
@@ -165,6 +166,78 @@ def get_receipt_print(receipt: str) -> dict:
 	_require_student_access(student)
 	html = frappe.get_print("Fee Receipt", receipt)
 	return {"html": html}
+
+
+# ---------------------------------------------------------------------
+# Makeup credits
+# ---------------------------------------------------------------------
+@frappe.whitelist()
+def get_my_makeup_credits() -> list[dict]:
+	"""Open makeup credits for the portal user's students."""
+	students = _current_students()
+	return frappe.get_all(
+		"Makeup Credit",
+		filters={"student": ["in", students or [""]], "status": "Open"},
+		fields=["name", "student", "student_name", "reason", "issued_on", "expires_on", "status"],
+		order_by="expires_on asc",
+	)
+
+
+@frappe.whitelist()
+def redeem_makeup_credit(credit: str, session: str) -> dict:
+	"""Redeem a makeup credit for a session (portal user owns the student)."""
+	doc = frappe.get_doc("Makeup Credit", credit)
+	_require_student_access(doc.student)
+	doc.redeem(session)
+	return {"status": "ok", "credit": doc.name}
+
+
+# ---------------------------------------------------------------------
+# Session feedback
+# ---------------------------------------------------------------------
+@frappe.whitelist()
+def submit_session_feedback(
+	class_session: str, student: str, rating: float, trainer_rating: float | None = None, comments: str | None = None
+) -> dict:
+	"""Submit session feedback as a portal user (rating fields 1-5)."""
+	_require_student_access(student)
+
+	feedback = frappe.new_doc("Session Feedback")
+	feedback.class_session = class_session
+	feedback.student = student
+	feedback.rating = rating
+	feedback.trainer_rating = trainer_rating
+	feedback.comments = comments
+	feedback.feedback_date = today()
+	feedback.insert(ignore_permissions=True)
+	return {"status": "ok", "feedback": feedback.name}
+
+
+@frappe.whitelist()
+def get_session_feedback_summary(trainer: str | None = None) -> dict:
+	"""Average session/trainer ratings, optionally scoped to a trainer."""
+	conditions = ["1=1"]
+	values: dict = {}
+	if trainer:
+		conditions.append("trainer = %(trainer)s")
+		values["trainer"] = trainer
+
+	row = frappe.db.sql(
+		f"""
+		SELECT COUNT(*) AS total,
+			AVG(rating) AS avg_session,
+			AVG(trainer_rating) AS avg_trainer
+		FROM `tabSession Feedback`
+		WHERE {' AND '.join(conditions)}
+		""",
+		values,
+		as_dict=1,
+	)[0]
+	return {
+		"total": cint(row.total or 0),
+		"avg_session_rating": flt(row.avg_session or 0, 2),
+		"avg_trainer_rating": flt(row.avg_trainer or 0, 2),
+	}
 
 
 # ---------------------------------------------------------------------

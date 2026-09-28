@@ -92,8 +92,23 @@
      "type": "DocType"
     },
     {
+     "label": "Lead Inquiry",
+     "link_to": "Lead Inquiry",
+     "type": "DocType"
+    },
+    {
      "label": "Skill Evaluation",
      "link_to": "Skill Evaluation",
+     "type": "DocType"
+    },
+    {
+     "label": "Makeup Credit",
+     "link_to": "Makeup Credit",
+     "type": "DocType"
+    },
+    {
+     "label": "Certificate",
+     "link_to": "Certificate",
      "type": "DocType"
     }
    ]
@@ -121,6 +136,16 @@
     {
      "label": "Class Session",
      "link_to": "Class Session",
+     "type": "DocType"
+    },
+    {
+     "label": "Trainer Payout",
+     "link_to": "Trainer Payout",
+     "type": "DocType"
+    },
+    {
+     "label": "Session Feedback",
+     "link_to": "Session Feedback",
      "type": "DocType"
     },
     {
@@ -153,6 +178,16 @@
     {
      "label": "Fee Collection Summary",
      "link_to": "Fee Collection Summary",
+     "type": "Report"
+    },
+    {
+     "label": "Lead Funnel",
+     "link_to": "Lead Funnel",
+     "type": "Report"
+    },
+    {
+     "label": "Session Feedback Summary",
+     "link_to": "Session Feedback Summary",
      "type": "Report"
     }
    ]

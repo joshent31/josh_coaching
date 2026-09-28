@@ -116,6 +116,29 @@
    "read_only": 1
   },
   {
+   "fieldname": "section_freeze",
+   "fieldtype": "Section Break",
+   "label": "Freeze / Hold"
+  },
+  {
+   "fieldname": "frozen_from",
+   "fieldtype": "Date",
+   "label": "Frozen From",
+   "depends_on": "eval:doc.freeze_status==='Frozen'"
+  },
+  {
+   "fieldname": "frozen_to",
+   "fieldtype": "Date",
+   "label": "Frozen To",
+   "depends_on": "eval:doc.freeze_status==='Frozen'"
+  },
+  {
+   "fieldname": "freeze_reason",
+   "fieldtype": "Small Text",
+   "label": "Freeze Reason",
+   "depends_on": "eval:doc.freeze_status==='Frozen'"
+  },
+  {
    "fieldname": "section_notes",
    "fieldtype": "Section Break",
    "label": ""
@@ -141,6 +164,15 @@
    "default": "Draft",
    "in_list_view": 1,
    "in_standard_filter": 1
+  },
+  {
+   "fieldname": "freeze_status",
+   "fieldtype": "Select",
+   "label": "Freeze Status",
+   "options": "\nFrozen",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Frozen enrollments are skipped by auto-billing; billing resumes (dates shifted) on unfreeze."
   }
  ],
  "permissions": [

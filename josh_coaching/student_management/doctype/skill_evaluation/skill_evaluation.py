@@ -13,3 +13,10 @@ class SkillEvaluation(Document):
 			self.percentage = flt(self.total_score / self.max_score * 100, 2)
 		else:
 			self.percentage = 0
+
+	def on_submit(self):
+		from josh_coaching.student_management.certificate import (
+			maybe_issue_from_evaluation,
+		)
+
+		maybe_issue_from_evaluation(self)

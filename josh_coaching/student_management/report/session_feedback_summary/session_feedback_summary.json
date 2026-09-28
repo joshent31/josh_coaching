@@ -1,0 +1,14 @@
+{
+ "doctype": "Report",
+ "name": "Session Feedback Summary",
+ "module": "Student Management",
+ "ref_doctype": "Session Feedback",
+ "report_type": "Script Report",
+ "is_standard": "Yes",
+ "roles": [
+  {"role": "System Manager"},
+  {"role": "Academy Manager"},
+  {"role": "Trainer"}
+ ],
+ "disabled": 0
+}

@@ -16,6 +16,10 @@ class StudentAttendance(Document):
 
 	def after_insert(self):
 		self._touch_session()
+		if self.present == "Absent":
+			from josh_coaching.student_management.makeup_credit import issue_credit
+
+			issue_credit(self.student, reason="Absent", attendance=self.name)
 
 	def on_update(self):
 		self._touch_session()
