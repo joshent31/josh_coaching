@@ -83,7 +83,12 @@ class Enrollment(Document):
 		self.frozen_from = frozen_from
 		self.frozen_to = frozen_to
 		self.freeze_reason = reason
-		self.save(ignore_permissions=True)
+		if self.docstatus == 0:
+			self.save(ignore_permissions=True)
+		else:
+			from josh_coaching.utils import save_submitted
+
+			save_submitted(self)
 		return self.name
 
 	@frappe.whitelist()
@@ -100,7 +105,12 @@ class Enrollment(Document):
 		self.frozen_from = None
 		self.frozen_to = None
 		self.freeze_reason = None
-		self.save(ignore_permissions=True)
+		if self.docstatus == 0:
+			self.save(ignore_permissions=True)
+		else:
+			from josh_coaching.utils import save_submitted
+
+			save_submitted(self)
 		return shifted
 
 	def on_cancel(self):

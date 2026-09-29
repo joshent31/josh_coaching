@@ -55,7 +55,9 @@ class FeeInvoice(Document):
 			self.status = "Unpaid"
 		if self.status != "Overdue" and self.outstanding_amount > 0 and self.due_date and getdate(self.due_date) < getdate(today()):
 			self.status = "Overdue"
-		self.save(ignore_permissions=True)
+		from josh_coaching.utils import save_submitted
+
+		save_submitted(self)
 
 	def make_sales_invoice(self, submit: bool = False):
 		"""Realize revenue in ERPNext: create a Sales Invoice from this fee invoice."""

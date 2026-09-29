@@ -47,7 +47,9 @@ class FeeRefund(Document):
 				invoice.status = "Paid"
 			elif flt(invoice.paid_amount) > 0:
 				invoice.status = "Partially Paid"
-			invoice.save(ignore_permissions=True)
+			from josh_coaching.utils import save_submitted
+
+			save_submitted(invoice)
 
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")

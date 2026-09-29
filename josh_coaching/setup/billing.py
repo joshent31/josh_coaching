@@ -179,7 +179,9 @@ def apply_late_fees() -> list[str]:
 			)
 			doc.calculate_totals()
 			doc.outstanding_amount = flt(doc.total_amount) - flt(doc.paid_amount)
-			doc.save(ignore_permissions=True)
+			from josh_coaching.utils import save_submitted
+
+			save_submitted(doc)
 			updated.append(name)
 		except Exception:  # noqa: BLE001 — log and continue with remaining invoices
 			frappe.log_error(

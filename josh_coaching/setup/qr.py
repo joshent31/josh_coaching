@@ -158,7 +158,7 @@ def _find_current_session(student: str) -> str | None:
 	"""Session today for a batch the student is actively enrolled in."""
 	batches = frappe.get_all(
 		"Enrollment",
-		filters={"student": student, "status": "Active", "docstatus": 0},
+		filters={"student": student, "status": "Active", "docstatus": ["<", 2]},
 		pluck="batch",
 	)
 	if not batches:
